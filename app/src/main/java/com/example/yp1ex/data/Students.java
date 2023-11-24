@@ -10,7 +10,7 @@ public class Students implements Serializable {
     private String date;
     private int idGroup;
 
-    public Students(String firstName, String secondName, String surname, String date, int idGroup) {
+    public Students(String secondName, String firstName, String surname, String date, int idGroup) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.surname = surname;

@@ -39,7 +39,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull GroupsAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Groups group = groupsList.get(position);
-        holder.tvNum.setText(group.getNumber());
+        holder.tvNum.setText(String.valueOf(group.getNumber()));
         holder.tvName.setText(group.getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

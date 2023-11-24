@@ -60,10 +60,10 @@ public class DataBaseManager {
     }
 
     @SuppressLint("Range")
-    public Groups getGroup(int groupId){
+    public Groups getGroup(int groupId) {
         Groups group = new Groups();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME_GROUPS + " WHERE " + GROUPS_ID + " = " + "\"" + groupId + "\"", null);
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             group.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DataBaseConst.GROUPS_ID))));
             group.setNumber(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DataBaseConst.GROUPS_NUMBER))));
             group.setName(cursor.getString(cursor.getColumnIndex(DataBaseConst.GROUPS_NAME)));
@@ -76,10 +76,10 @@ public class DataBaseManager {
     public List<Groups> getGroups() {
         List<Groups> groups = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT * FROM " +
-                TABLE_NAME_STUDENTS, null);
+                TABLE_NAME_GROUPS, null);
         while (cursor.moveToNext()) {
             Groups group = new Groups();
-            group.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DataBaseConst.GROUPS_ID))));
+            group.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(GROUPS_ID))));
             group.setNumber(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DataBaseConst.GROUPS_NUMBER))));
             group.setName(cursor.getString(cursor.getColumnIndex(DataBaseConst.GROUPS_NAME)));
             groups.add(group);
@@ -88,7 +88,7 @@ public class DataBaseManager {
         return groups;
     }
 
-    public void addStudent(Students student){
+    public void addStudent(Students student) {
         ContentValues cv = new ContentValues();
         cv.put(DataBaseConst.STUDENTS_FIRSTNAME, student.getFirstName());
         cv.put(DataBaseConst.STUDENTS_SECOND_NAME, student.getSecondName());
@@ -98,14 +98,14 @@ public class DataBaseManager {
         db.insert(TABLE_NAME_STUDENTS, null, cv);
     }
 
-    public void addGroups (Groups group){
+    public void addGroups(Groups group) {
         ContentValues cv = new ContentValues();
         cv.put(DataBaseConst.GROUPS_NUMBER, group.getNumber());
         cv.put(DataBaseConst.GROUPS_NAME, group.getName());
         db.insert(TABLE_NAME_GROUPS, null, cv);
     }
 
-    public void updStudent(Students student){
+    public void updStudent(Students student) {
         ContentValues cv = new ContentValues();
         cv.put(DataBaseConst.STUDENTS_FIRSTNAME, student.getFirstName());
         cv.put(DataBaseConst.STUDENTS_SECOND_NAME, student.getSecondName());
@@ -115,18 +115,18 @@ public class DataBaseManager {
         db.update(TABLE_NAME_STUDENTS, cv, STUDENTS_ID + " = " + student.getId(), null);
     }
 
-    public void updGroups (Groups group){
+    public void updGroups(Groups group) {
         ContentValues cv = new ContentValues();
         cv.put(DataBaseConst.GROUPS_NUMBER, group.getNumber());
         cv.put(DataBaseConst.GROUPS_NAME, group.getName());
         db.update(TABLE_NAME_GROUPS, cv, GROUPS_ID + " = " + group.getId(), null);
     }
 
-    public void delStudents(Students student){
+    public void delStudents(Students student) {
         db.delete(TABLE_NAME_STUDENTS, STUDENTS_ID + " = " + student.getId(), null);
     }
 
-    public void delGroup(Groups group){
+    public void delGroup(Groups group) {
         db.delete(TABLE_NAME_GROUPS, GROUPS_ID + " = " + group.getId(), null);
     }
 }

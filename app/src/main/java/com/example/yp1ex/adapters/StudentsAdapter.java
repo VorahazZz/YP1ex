@@ -42,7 +42,7 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.ViewHo
         dataBaseManager = new DataBaseManager(holder.itemView.getContext());
         dataBaseManager.openDb();
         Students student = studentsList.get(position);
-        holder.tvFIO.setText(student.getSecondName() + " " + student.getFirstName() + " " + student.getSurname());
+        holder.tvFIO.setText(student.getSecondName() + "\n" + student.getFirstName() + "\n" + student.getSurname());
         holder.tvDate.setText(student.getDate());
         holder.tvGroup.setText(dataBaseManager.getGroup(student.getIdGroup()).getNumber() + " " + dataBaseManager.getGroup(student.getIdGroup()).getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -42,6 +42,12 @@ public class StudentsFragment extends Fragment {
         dataBaseManager = new DataBaseManager(getContext());
         dataBaseManager.openDb();
         List<Students> studentsList = dataBaseManager.getStudents();
+        studentsList.sort(new Comparator<Students>() {
+            @Override
+            public int compare(Students o1, Students o2) {
+                return String.CASE_INSENSITIVE_ORDER.compare(o1.getSecondName(), o2.getSecondName());
+            }
+        });
         StudentsAdapter.OnStudentClickListener onStudentClickListener = new StudentsAdapter.OnStudentClickListener() {
             @Override
             public void OnStudentClick(Students student, int position) {
