@@ -6,10 +6,18 @@ public class Groups implements Serializable {
     private int id;
     private int number;
     private String name;
+    private boolean isSelected;
 
     public Groups(int number, String name) {
         this.number = number;
         this.name = name;
+    }
+
+    public boolean isSelected(){
+        return isSelected;
+    }
+    public void setSelected(boolean selected){
+        isSelected = selected;
     }
 
     public Groups(){

@@ -42,7 +42,7 @@ public class GroupsFragment extends Fragment {
         GroupsAdapter.OnGroupClickListener onGroupClickListener = new GroupsAdapter.OnGroupClickListener() {
             @Override
             public void OnGroupClick(Groups group, int pos) {
-                AddEditGroupFragment addEditGroupFragment = new AddEditGroupFragment(group.getId());
+                AddEditGroupFragment addEditGroupFragment = new AddEditGroupFragment(group);
                 getParentFragmentManager().beginTransaction()
                         .replace(R.id.fragmentContainerView, addEditGroupFragment, null)
                         .setReorderingAllowed(true)
@@ -56,7 +56,7 @@ public class GroupsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, AddEditStudentFragment.class, null)
+                        .replace(R.id.fragmentContainerView, AddEditGroupFragment.class, null)
                         .setReorderingAllowed(true)
                         .addToBackStack(null)
                         .commit();

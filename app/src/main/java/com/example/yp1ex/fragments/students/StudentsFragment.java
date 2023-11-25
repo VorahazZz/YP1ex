@@ -51,7 +51,7 @@ public class StudentsFragment extends Fragment {
         StudentsAdapter.OnStudentClickListener onStudentClickListener = new StudentsAdapter.OnStudentClickListener() {
             @Override
             public void OnStudentClick(Students student, int position) {
-                AddEditStudentFragment addEditStudentFragment = new AddEditStudentFragment(student.getId());
+                AddEditStudentFragment addEditStudentFragment = new AddEditStudentFragment(student);
                 getParentFragmentManager().beginTransaction()
                         .replace(R.id.fragmentContainerView, addEditStudentFragment, null)
                         .addToBackStack(null)
