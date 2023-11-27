@@ -5,6 +5,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,12 +18,15 @@ import com.example.yp1ex.R;
 import com.example.yp1ex.data.Groups;
 import com.example.yp1ex.data.Students;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class StudentGroupAdapter extends RecyclerView.Adapter<StudentGroupAdapter.ViewHolder> {
+public class StudentGroupAdapter extends RecyclerView.Adapter<StudentGroupAdapter.ViewHolder> implements Filterable {
+
     public interface OnGroupStdClickListener {
         void OnGroupStudClick(Groups group, int pos);
     }
+
 
     LayoutInflater layoutInflater;
     List<Groups> groupsList;
@@ -36,6 +41,39 @@ public class StudentGroupAdapter extends RecyclerView.Adapter<StudentGroupAdapte
         this.onClickListener = onClickListener;
         this.student = student;
     }
+
+    @Override
+    public Filter getFilter() {
+        return dataFilter;
+    }
+    List<Groups> searchList = new ArrayList<>();
+    private Filter dataFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Groups> filteredGroups = new ArrayList<>();
+            if (charSequence == null || charSequence.length() != 0) {
+                filteredGroups.addAll(groupsList);
+            } else {
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for (Groups group : groupsList){
+                    if (group.getName().toLowerCase().contains(filterPattern)){
+                        filteredGroups.add(group);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredGroups;
+            return results;
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            searchList.clear();
+            searchList.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     @NonNull
     @Override

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.students.StudentsFragment">
+    tools:context=".fragments.students.StudentsFragment"
+    style="@style/Theme.Material3.Dark">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewStudents"
@@ -21,21 +22,22 @@
 
     <LinearLayout
         android:id="@+id/llButtons"
+        android:background="@drawable/border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/recyclerViewStudents"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/buttonAddStud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Добавить студента"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            style="@style/Widget.Material3.Button.ElevatedButton"/>
         <CheckBox
             android:id="@+id/checkBoxSort"
             android:layout_width="wrap_content"

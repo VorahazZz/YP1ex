@@ -8,23 +8,34 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewGroups"
+        android:background="@drawable/border"
         android:layout_width="match_parent"
-        android:layout_height="@+id/buttonAddGroup"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddGroup"
+        android:layout_height="@+id/llButton"
+        app:layout_constraintBottom_toTopOf="@+id/llButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_group"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-    <Button
-        android:id="@+id/buttonAddGroup"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Добавить группу"
-        android:layout_margin="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewGroups"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewGroups" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <Button
+            android:id="@+id/buttonAddGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Добавить группу"
+            android:layout_margin="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

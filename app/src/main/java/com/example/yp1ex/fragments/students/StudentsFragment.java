@@ -51,10 +51,9 @@ public class StudentsFragment extends Fragment {
         StudentsAdapter.OnStudentClickListener onStudentClickListener = new StudentsAdapter.OnStudentClickListener() {
             @Override
             public void OnStudentClick(Students student, int position) {
-                AddEditStudentFragment addEditStudentFragment = new AddEditStudentFragment(student);
                 getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, addEditStudentFragment, null)
-                        .addToBackStack(null)
+                        .replace(R.id.fragmentContainerView, new AddEditStudentFragment(student), "studentAddEdit")
+                        .addToBackStack("students")
                         .setReorderingAllowed(true)
                         .commit();
             }
@@ -65,8 +64,8 @@ public class StudentsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getParentFragmentManager().beginTransaction()
-                        .replace(R.id.fragmentContainerView, AddEditStudentFragment.class, null)
-                        .addToBackStack(null)
+                        .replace(R.id.fragmentContainerView, AddEditStudentFragment.class, null, "studentAddEdit")
+                        .addToBackStack("students")
                         .setReorderingAllowed(true)
                         .commit();
             }

@@ -46,7 +46,7 @@ public class GroupsFragment extends Fragment {
                 getParentFragmentManager().beginTransaction()
                         .replace(R.id.fragmentContainerView, addEditGroupFragment, null)
                         .setReorderingAllowed(true)
-                        .addToBackStack(null)
+                        .addToBackStack("groupUpd")
                         .commit();
             }
         };
@@ -58,7 +58,7 @@ public class GroupsFragment extends Fragment {
                 getParentFragmentManager().beginTransaction()
                         .replace(R.id.fragmentContainerView, AddEditGroupFragment.class, null)
                         .setReorderingAllowed(true)
-                        .addToBackStack(null)
+                        .addToBackStack("groupAdd")
                         .commit();
             }
         });

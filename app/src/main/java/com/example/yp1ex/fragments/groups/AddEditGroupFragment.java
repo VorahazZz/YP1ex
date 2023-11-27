@@ -10,12 +10,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.yp1ex.R;
 import com.example.yp1ex.data.Groups;
+import com.example.yp1ex.data.Students;
 import com.example.yp1ex.data_base.DataBaseManager;
 import com.example.yp1ex.databinding.FragmentAddEditGroupBinding;
 
+import java.util.List;
 import java.util.function.ObjIntConsumer;
 
 public class AddEditGroupFragment extends Fragment {
@@ -50,21 +53,37 @@ public class AddEditGroupFragment extends Fragment {
         binding.buttonGroupAddEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                group.setNumber(Integer.parseInt(binding.editTextGroupNum.getText().toString()));
+                group.setName(binding.editTextGroupName.getText().toString());
                 if (group.getId() == 0){
-                    Groups group = new Groups(Integer.parseInt(binding.editTextGroupNum.getText().toString()), binding.editTextGroupName.getText().toString());
+                    //Groups group = new Groups(Integer.parseInt(binding.editTextGroupNum.getText().toString()), binding.editTextGroupName.getText().toString());
                     dataBaseManager.addGroups(group);
+                    Toast.makeText(getContext(), "Группа добавлена", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    group.setNumber(Integer.parseInt(binding.editTextGroupNum.getText().toString()));
-                    group.setName(binding.editTextGroupName.getText().toString());        ;
                     dataBaseManager.updGroups(group);
+                    Toast.makeText(getContext(), "Группа изменена", Toast.LENGTH_SHORT).show();
                 }
+                getParentFragmentManager().popBackStack();
             }
         });
         binding.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dataBaseManager.delGroup(group);
+                List<Students> studentsList = dataBaseManager.getStudents();
+                int countStudents = 0;
+                for (Students student : studentsList){
+                    if (student.getIdGroup() == group.getId())
+                        countStudents++;
+                }
+                if (countStudents > 0){
+                    Toast.makeText(getContext(), "Группу нельзя удалить, потому что ней есть студенты!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    dataBaseManager.delGroup(group);
+                    Toast.makeText(getContext(), "Группа удалена", Toast.LENGTH_SHORT).show();
+                    getParentFragmentManager().popBackStack();
+                }
             }
         });
     }
