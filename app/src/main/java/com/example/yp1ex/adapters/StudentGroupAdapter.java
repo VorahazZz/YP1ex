@@ -21,7 +21,7 @@ import com.example.yp1ex.data.Students;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentGroupAdapter extends RecyclerView.Adapter<StudentGroupAdapter.ViewHolder> implements Filterable {
+public class StudentGroupAdapter extends RecyclerView.Adapter<StudentGroupAdapter.ViewHolder> {
 
     public interface OnGroupStdClickListener {
         void OnGroupStudClick(Groups group, int pos);
@@ -41,39 +41,6 @@ public class StudentGroupAdapter extends RecyclerView.Adapter<StudentGroupAdapte
         this.onClickListener = onClickListener;
         this.student = student;
     }
-
-    @Override
-    public Filter getFilter() {
-        return dataFilter;
-    }
-    List<Groups> searchList = new ArrayList<>();
-    private Filter dataFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence charSequence) {
-            List<Groups> filteredGroups = new ArrayList<>();
-            if (charSequence == null || charSequence.length() != 0) {
-                filteredGroups.addAll(groupsList);
-            } else {
-                String filterPattern = charSequence.toString().toLowerCase().trim();
-                for (Groups group : groupsList){
-                    if (group.getName().toLowerCase().contains(filterPattern)){
-                        filteredGroups.add(group);
-                    }
-                }
-            }
-            FilterResults results = new FilterResults();
-            results.values = filteredGroups;
-            return results;
-        }
-
-        @SuppressLint("NotifyDataSetChanged")
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            searchList.clear();
-            searchList.addAll((List) filterResults.values);
-            notifyDataSetChanged();
-        }
-    };
 
     @NonNull
     @Override
@@ -135,13 +102,6 @@ public class StudentGroupAdapter extends RecyclerView.Adapter<StudentGroupAdapte
             tvNum = itemView.findViewById(R.id.textViewStudentGroupNum);
             tvName = itemView.findViewById(R.id.textViewStudentGroupName);
             radioButton = itemView.findViewById(R.id.rbStudGrCheck);
-
-//            radioButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    handleRBChecks(getAdapterPosition());
-//                }
-//            });
         }
     }
 }

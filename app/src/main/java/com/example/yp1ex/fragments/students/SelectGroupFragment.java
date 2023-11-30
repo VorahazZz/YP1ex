@@ -64,23 +64,6 @@ public class SelectGroupFragment extends Fragment {
             }
         };
         StudentGroupAdapter studentGroupAdapter = new StudentGroupAdapter(getContext(), groupsList, onGroupStdClickListener, student);
-        binding.editTextSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                studentGroupAdapter.getFilter().filter(charSequence);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
         binding.recyclerViewStudGroup.setAdapter(studentGroupAdapter);
     }
 
