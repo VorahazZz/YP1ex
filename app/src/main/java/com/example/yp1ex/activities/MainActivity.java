@@ -12,6 +12,7 @@ import com.example.yp1ex.data.Students;
 import com.example.yp1ex.data_base.DataBaseManager;
 import com.example.yp1ex.databinding.ActivityMainBinding;
 import com.example.yp1ex.fragments.groups.GroupsFragment;
+import com.example.yp1ex.fragments.info.InfoFragment;
 import com.example.yp1ex.fragments.students.StudentsFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -47,16 +48,23 @@ public class MainActivity extends AppCompatActivity {
                             .addToBackStack(null)
                             .commit();
                 }
+                if (item.getItemId() == R.id.info){
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainerView, InfoFragment.class, null)
+                            .setReorderingAllowed(true)
+                            .addToBackStack(null)
+                            .commit();
+                }
                 return true;
             }
         });
     }
 
     public void setData(){
-        dataBaseManager = new DataBaseManager(MainActivity.this);
+        dataBaseManager = new DataBaseManager(this);
         dataBaseManager.openDb();
-        dataBaseManager.addGroups(new Groups(1,"ИСП"));
-        dataBaseManager.addGroups(new Groups(2,"ИСП"));
+        dataBaseManager.addGroups(new Groups(5,"А"));
+        dataBaseManager.addGroups(new Groups(3,"Б"));
         dataBaseManager.addStudent(new Students("Захаров", "Александр", "Николаевич", "07.03.2004", 1));
         dataBaseManager.addStudent(new Students("Варламов", "Максим", "Игоревич", "30.05.2004", 1));
         dataBaseManager.addStudent(new Students("Головин", "Александр", "Григорьевич", "02.06.2004", 1));

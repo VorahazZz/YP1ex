@@ -35,14 +35,14 @@
             android:id="@+id/buttonAddStud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Добавить студента"
+            android:text="Добавить ученика"
             android:layout_margin="10dp"
             style="@style/Widget.Material3.Button.ElevatedButton"/>
         <CheckBox
             android:id="@+id/checkBoxSort"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Сортировать по номеру группы"/>
+            android:text="Сортировать по классам"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

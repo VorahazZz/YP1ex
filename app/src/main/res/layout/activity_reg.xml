@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.groups.AddEditGroupFragment">
+    tools:context=".activities.RegActivity">
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editTextGroupNum"
+            android:id="@+id/editTextRegLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Номер класса"
-            android:inputType="number"
-            android:textAlignment="center"/>
-        <EditText
-            android:id="@+id/editTextGroupName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Инициал класса"
+            android:ems="10"
             android:inputType="text"
-            android:textAlignment="center"/>
-        <Button
-            android:id="@+id/buttonGroupAddEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Добавить"/>
-        <Button
-            android:id="@+id/buttonDelete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Удалить"
-            android:visibility="gone"/>
+            android:hint="Логин"/>
 
+        <EditText
+            android:id="@+id/editTextRegPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="Пароль"/>
+
+        <EditText
+            android:id="@+id/editTextRegPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:hint="Номер телефона"/>
+
+        <Button
+            android:id="@+id/buttonRegEnter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Зарегистрироваться" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

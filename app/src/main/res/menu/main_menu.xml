@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/studentsMenu"
-        android:title="Студенты"
+        android:title="Ученики"
         android:icon="@drawable/baseline_person_24"/>
     <item android:id="@+id/groupsMenu"
-        android:title="Группы"
+        android:title="Классы"
         android:icon="@drawable/baseline_school_24"/>
+    <item android:id="@+id/info"
+        android:title="О приложении"
+        android:icon="@drawable/baseline_phone_android_24"/>
+
 </menu>

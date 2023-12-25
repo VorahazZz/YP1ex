@@ -4,6 +4,11 @@ import static com.example.yp1ex.data_base.DataBaseConst.GROUPS_ID;
 import static com.example.yp1ex.data_base.DataBaseConst.STUDENTS_ID;
 import static com.example.yp1ex.data_base.DataBaseConst.TABLE_NAME_GROUPS;
 import static com.example.yp1ex.data_base.DataBaseConst.TABLE_NAME_STUDENTS;
+import static com.example.yp1ex.data_base.DataBaseConst.TABLE_NAME_USERS;
+import static com.example.yp1ex.data_base.DataBaseConst.USERS_ID;
+import static com.example.yp1ex.data_base.DataBaseConst.USERS_LOGIN;
+import static com.example.yp1ex.data_base.DataBaseConst.USERS_PASS;
+import static com.example.yp1ex.data_base.DataBaseConst.USERS_PHONE;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -15,6 +20,7 @@ import androidx.constraintlayout.widget.Group;
 
 import com.example.yp1ex.data.Groups;
 import com.example.yp1ex.data.Students;
+import com.example.yp1ex.data.Users;
 
 import java.nio.file.attribute.GroupPrincipal;
 import java.sql.Struct;
@@ -39,6 +45,29 @@ public class DataBaseManager {
     public void closeDb() {
         db.close();
     }
+
+    @SuppressLint("Range")
+    public Users getUser(String login, String pass){
+        Users user = new Users();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME_USERS + " WHERE " + USERS_LOGIN + " = " + "\"" + login + "\"" + " AND " + USERS_PASS + " = " + "\"" + pass + "\"", null);
+        if (cursor.moveToFirst()){
+            user.setId(cursor.getInt(cursor.getColumnIndex(USERS_ID)));
+            user.setLogin(cursor.getString(cursor.getColumnIndex(USERS_LOGIN)));
+            user.setPass(cursor.getString(cursor.getColumnIndex(USERS_PASS)));
+            user.setPhone(cursor.getString(cursor.getColumnIndex(USERS_PHONE)));
+        }
+        cursor.close();
+        return user;
+    }
+
+    public void addUser(Users user){
+        ContentValues cv = new ContentValues();
+        cv.put(USERS_LOGIN, user.getLogin());
+        cv.put(USERS_PASS, user.getPass());
+        cv.put(USERS_PHONE, user.getPhone());
+        db.insert(TABLE_NAME_USERS, null, cv);
+    }
+
 
     @SuppressLint("Range")
     public List<Students> getStudents() {

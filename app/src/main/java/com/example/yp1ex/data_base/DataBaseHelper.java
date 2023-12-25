@@ -15,12 +15,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(DataBaseConst.CREATE_TABLE_GROUP);
         sqLiteDatabase.execSQL(DataBaseConst.CREATE_TABLE_STUDENTS);
+        sqLiteDatabase.execSQL(DataBaseConst.CREATE_TABLE_USERS);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL(DataBaseConst.DELETE_TABLE_GROUP);
         sqLiteDatabase.execSQL(DataBaseConst.DELETE_TABLE_STUDENTS);
+        sqLiteDatabase.execSQL(DataBaseConst.DELETE_TABLE_USERS);
         onCreate(sqLiteDatabase);
     }
 }
